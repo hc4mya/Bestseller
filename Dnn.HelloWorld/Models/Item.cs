@@ -18,7 +18,7 @@ using System.Web.Caching;
 
 namespace HelloWorld.Dnn.Dnn.HelloWorld.Models
 {
-    [TableName("Dnn.HelloWorld_Items")]
+    [TableName("HelloWorld_Items")]
     //setup the primary key for table
     [PrimaryKey("ItemId", AutoIncrement = true)]
     //configure caching using PetaPoco
