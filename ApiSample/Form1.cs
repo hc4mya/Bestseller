@@ -1,4 +1,5 @@
-﻿using Hotcakes.CommerceDTO.v1.Client;
+﻿using ApiSample.Controllers;
+using Hotcakes.CommerceDTO.v1.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,8 @@ namespace ApiSample
 {
     public partial class Form1 : Form
     {
+        private TermekController termekController = new TermekController();
+        
         List<Termek> termeklista = new List<Termek>();
         public Form1()
 
