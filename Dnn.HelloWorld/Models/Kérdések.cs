@@ -27,13 +27,7 @@ namespace HelloWorld.Dnn.Dnn.HelloWorld.Models
     [Scope("ModuleId")]
     public class Kérdések
     {
-        ///<summary>
-        /// The ID of your object with the name of the ItemName
-        ///</summary>
         public int QuestionID { get; set; }
-        ///<summary>
-        /// A string with the name of the ItemName
-        ///</summary>
         public string QuestionText { get; set; }
 
     }

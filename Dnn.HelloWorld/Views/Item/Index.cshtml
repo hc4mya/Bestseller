@@ -8,43 +8,33 @@
 @using DotNetNuke.Framework.JavaScriptLibraries;
 @using HelloWorld.Dnn.Dnn.HelloWorld.Models;
 @using HelloWorld.Dnn.Dnn.HelloWorld.Components;
+@using HelloWorld.Dnn.Dnn.HelloWorld.Services;
+
 
 @using System.Data
 
-<table>
-    <thead>
-        <tr>
-            <th>QuestionText</th>
-            <!-- Ide írd a további oszlopok fejléceit -->
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (System.Data.DataRow row in Model.Rows)
-        {
-            <tr>
-                <td>@row["QuestionText"]</td>
-                <!-- Ide írd a további oszlopokat -->
-            </tr>
-        }
-    </tbody>
-</table>
+@{
+    var controller = new HelloWorld.Dnn.Dnn.HelloWorld.Services.Implementations.KérdésekController();
+    var elso_kérdés = controller.FindKérdésByID(1);
+    Answers[] elso_valaszok = controller.FindVálaszokByQuestion(1);
+}
 
 
 
-<h1>
-    Ajánló rendszer!
-</h1>
+
 <div>
-    <h2>
-        Mi a célod a növényekkel, kertészettel?
-    </h2>
-    <p>
-        Lakásom díszítése
-    </p>
-    <p>
-        Kertem díszítése
-    </p>
-    <p>
-        Termeszteni szeretnék valamit
-    </p>
+
+    <div class="first-section">
+        <p>
+            @(elso_kérdés != null ? elso_kérdés.QuestionText : "Question not found.")
+        </p>
+        @*for ciklus?*@
+        <button type="radio" onclick="">@(elso_valaszok != null ? elso_valaszok[0].AnswerText : "Answer not found.")</button>
+        <button type="radio" onclick="">@(elso_valaszok != null ? elso_valaszok[1].AnswerText : "Answer not found.")</button>
+        <button type="radio" onclick="">@(elso_valaszok != null ? elso_valaszok[2].AnswerText : "Answer not found.")</button>
+
+    </div>
 </div>
+
+
+

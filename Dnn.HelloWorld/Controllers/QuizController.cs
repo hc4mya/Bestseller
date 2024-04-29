@@ -34,7 +34,7 @@ namespace HelloWorld.Dnn.Dnn.HelloWorld.Controllers
             return RedirectToDefaultRoute();
         }
 
-        public ActionResult Edit(int itemId = -1)
+        /*public ActionResult Edit(int QuestionID = -1)
         {
             DotNetNuke.Framework.JavaScriptLibraries.JavaScript.RequestRegistration(CommonJs.DnnPlugins);
 
@@ -44,12 +44,12 @@ namespace HelloWorld.Dnn.Dnn.HelloWorld.Controllers
 
             ViewBag.Users = users;
 
-            var item = (itemId == -1)
-                 ? new Item { ModuleId = ModuleContext.ModuleId }
-                 : ItemManager.Instance.GetItem(itemId, ModuleContext.ModuleId);
+            var kérdés = (QuestionID == -1)
+                 ? new Kérdések { ModuleId = ModuleContext.ModuleId }
+                 : QuizManager.Instance.GetKérdés(QuestionID, ModuleContext.ModuleId);
 
-            return View(item);
-        }
+            return View(kérdés);
+        }*/
         
         [HttpPost]
         [DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
@@ -83,11 +83,11 @@ namespace HelloWorld.Dnn.Dnn.HelloWorld.Controllers
 
 
 
-        [ModuleAction(ControlKey = "Edit", TitleKey = "AddItem")]
+        [ModuleAction(ControlKey = "Edit", TitleKey = "AddKérdés")]
         public ActionResult Index()
         {
-            var items = ItemManager.Instance.GetItems(ModuleContext.ModuleId);
-            return View(items);
+            var kérdés = QuizManager.Instance.GetKérdés(ModuleContext.ModuleId);
+            return View(kérdés);
         }
     }
 }
