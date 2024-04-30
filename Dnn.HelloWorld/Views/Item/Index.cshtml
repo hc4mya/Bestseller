@@ -28,39 +28,70 @@
     </script>
 *@
 
+@*
+    <script type="text/javascript">
+        function válasz(sorszam) {
+            // Hívjuk meg a szerver oldali kódot AJAX hívással, hogy frissítsük az adatokat
+            $.ajax({
+                type: "POST",
+                url: "KérdésController/FindKérdésByID",
+                data: { sorszam: sorszam }, // Átadjuk a kiválasztott sorszam paramétert a controllernek
+                success: function (response) {
+                    // Sikeres AJAX hívás esetén frissítjük az adatokat a válasz alapján
+                    var elso_kérdés = response.elso_kérdés;
+                    var elso_valaszok = response.elso_valaszok;
+
+                    // Itt már használhatjuk az elso_kérdés és elso_valaszok változókat a JavaScriptben
+                    // Például, frissíthetjük a gomb szövegét az új adatok alapján
+                    $("#button1").text(elso_valaszok[0].AnswerText);
+                    $("#button2").text(elso_valaszok[1].AnswerText);
+                    $("#button3").text(elso_valaszok[2].AnswerText);
+                }
+            });
+        }
+    </script>
+*@
 
 <script type="text/javascript">
     function válasz(sorszam) {
-        // Hívjuk meg a szerver oldali kódot AJAX hívással, hogy frissítsük az adatokat
         $.ajax({
             type: "POST",
-            url: "KérdésController/FindKérdésByID",
-            data: { sorszam: sorszam }, // Átadjuk a kiválasztott sorszam paramétert a controllernek
+            url: "KérdésController/FindKérdésByID", // Az AJAX hívás célja
+            data: { sorszam: sorszam }, // A szerveroldali kódnak átadott adat
             success: function (response) {
                 // Sikeres AJAX hívás esetén frissítjük az adatokat a válasz alapján
-                var elso_kérdés = response.elso_kérdés;
-                var elso_valaszok = response.elso_valaszok;
+                document.getElementById("question").innerHTML = response.QuestionText;
 
-                // Itt már használhatjuk az elso_kérdés és elso_valaszok változókat a JavaScriptben
-                // Például, frissíthetjük a gomb szövegét az új adatok alapján
-                $("#button1").text(elso_valaszok[0].AnswerText);
-                $("#button2").text(elso_valaszok[1].AnswerText);
-                $("#button3").text(elso_valaszok[2].AnswerText);
             }
         });
     }
 </script>
 
+@*               document.getElementById("answear1").innerHTML = response.answers[0];
+    document.getElementById("answear2").innerHTML = response.answers[1];
+    document.getElementById("answear3").innerHTML = response.answers[2];*@
+
+@*
+    <script type="text/javascript">
+                    function válasz(int sorszam) {
+                       document.getElementById("question").innerHTML = @(controller.FindKérdésByID(sorszam).QuestionText)
+                       document.getElementById("answear1").innerHTML =@(controller.FindVálaszokByQuestion(sorszam)[0].AnswerText )
+                       document.getElementById("answear2").innerHTML =@(controller.FindVálaszokByQuestion(sorszam)[1].AnswerText )
+                       document.getElementById("answear3").innerHTML =@(controller.FindVálaszokByQuestion(sorszam)[2].AnswerText )
+                    }
+    </script>*@
+
+
 <div>
 
     <div class="first-section">
-        <p>
+        <p id="question">
             @(elso_kérdés != null ? elso_kérdés.QuestionText : "Question not found.")
         </p>
         @*itt a válasz(@(controller.FindNextQuestionID()))*@
-        <button type="radio" onclick="válasz(1)">@(elso_valaszok != null ? elso_valaszok[0].AnswerText : "Answer not found.")</button>
-        <button type="radio" onclick="válasz(2)">@(elso_valaszok != null ? elso_valaszok[1].AnswerText : "Answer not found.")</button>
-        <button type="radio" onclick="válasz(3)">@(elso_valaszok != null ? elso_valaszok[2].AnswerText : "Answer not found.")</button>
+        <button type="radio" onclick="válasz(1)" id="answear1">@(elso_valaszok != null ? elso_valaszok[0].AnswerText : "Answer not found.")</button>
+        <button type="radio" onclick="válasz(2)" id="answear2">@(elso_valaszok != null ? elso_valaszok[1].AnswerText : "Answer not found.")</button>
+        <button type="radio" onclick="válasz(3)" id="answear3">@(elso_valaszok != null ? elso_valaszok[2].AnswerText : "Answer not found.")</button>
 
     </div>
 </div>
