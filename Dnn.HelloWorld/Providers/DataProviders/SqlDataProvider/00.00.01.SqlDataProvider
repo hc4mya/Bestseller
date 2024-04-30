@@ -45,6 +45,7 @@ CREATE TABLE {databaseOwner}{objectQualifier}Válaszok (
    QuestionID INT,
    AnswerText VARCHAR(255) NOT NULL,
    NextQuestionID INT,
+
    FOREIGN KEY (QuestionID) REFERENCES Questions(QuestionID) ON DELETE CASCADE
 );
  GO

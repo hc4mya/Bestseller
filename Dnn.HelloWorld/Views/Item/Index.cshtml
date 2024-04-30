@@ -1,5 +1,5 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<HelloWorld.Dnn.Dnn.HelloWorld.Models.Item>>
-
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
+@*<IEnumerable<HelloWorld.Dnn.Dnn.HelloWorld.Models.Item>>*@
 @using System.Text.RegularExpressions
 @using DotNetNuke.Web.Mvc.Helpers
 
@@ -19,8 +19,37 @@
     Answers[] elso_valaszok = controller.FindVálaszokByQuestion(1);
 }
 
+@*
+    <script type="text/javascript">
+                function válasz(int sorszam) {
+                    @{elso_kérdés = controller.FindKérdésByID(sorszam);
+                        Answers[] elso_valaszok = controller.FindVálaszokByQuestion(sorszam); }
+                }
+    </script>
+*@
 
 
+<script type="text/javascript">
+    function válasz(sorszam) {
+        // Hívjuk meg a szerver oldali kódot AJAX hívással, hogy frissítsük az adatokat
+        $.ajax({
+            type: "POST",
+            url: "KérdésController/FindKérdésByID",
+            data: { sorszam: sorszam }, // Átadjuk a kiválasztott sorszam paramétert a controllernek
+            success: function (response) {
+                // Sikeres AJAX hívás esetén frissítjük az adatokat a válasz alapján
+                var elso_kérdés = response.elso_kérdés;
+                var elso_valaszok = response.elso_valaszok;
+
+                // Itt már használhatjuk az elso_kérdés és elso_valaszok változókat a JavaScriptben
+                // Például, frissíthetjük a gomb szövegét az új adatok alapján
+                $("#button1").text(elso_valaszok[0].AnswerText);
+                $("#button2").text(elso_valaszok[1].AnswerText);
+                $("#button3").text(elso_valaszok[2].AnswerText);
+            }
+        });
+    }
+</script>
 
 <div>
 
@@ -28,10 +57,10 @@
         <p>
             @(elso_kérdés != null ? elso_kérdés.QuestionText : "Question not found.")
         </p>
-        @*for ciklus?*@
-        <button type="radio" onclick="">@(elso_valaszok != null ? elso_valaszok[0].AnswerText : "Answer not found.")</button>
-        <button type="radio" onclick="">@(elso_valaszok != null ? elso_valaszok[1].AnswerText : "Answer not found.")</button>
-        <button type="radio" onclick="">@(elso_valaszok != null ? elso_valaszok[2].AnswerText : "Answer not found.")</button>
+        @*itt a válasz(@(controller.FindNextQuestionID()))*@
+        <button type="radio" onclick="válasz(1)">@(elso_valaszok != null ? elso_valaszok[0].AnswerText : "Answer not found.")</button>
+        <button type="radio" onclick="válasz(2)">@(elso_valaszok != null ? elso_valaszok[1].AnswerText : "Answer not found.")</button>
+        <button type="radio" onclick="válasz(3)">@(elso_valaszok != null ? elso_valaszok[2].AnswerText : "Answer not found.")</button>
 
     </div>
 </div>
