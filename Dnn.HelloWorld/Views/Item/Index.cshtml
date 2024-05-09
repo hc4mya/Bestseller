@@ -1,19 +1,22 @@
 ﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage
 @*<IEnumerable<HelloWorld.Dnn.Dnn.HelloWorld.Models.Item>>*@
+
 @using System.Text.RegularExpressions
 @using DotNetNuke.Web.Mvc.Helpers
 
 @using DotNetNuke.Data;
-@using DotNetNuke.Web.Client.ClientResourceManagement;
-@using DotNetNuke.Framework.JavaScriptLibraries;
 @using HelloWorld.Dnn.Dnn.HelloWorld.Models;
 @using HelloWorld.Dnn.Dnn.HelloWorld.Components;
 @using HelloWorld.Dnn.Dnn.HelloWorld.Services;
-
+@using DotNetNuke.Web.Client.ClientResourceManagement;
+@using DotNetNuke.Framework.JavaScriptLibraries;
 
 @using System.Data
 
 @{
+    @*ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/HelloWorld/module-helloworld/Dnn.HelloWorld/Scripts/BSScript.js");  *@
+
+
     var controller = new HelloWorld.Dnn.Dnn.HelloWorld.Services.Implementations.KérdésekController();
     var elso_kérdés = controller.FindKérdésByID(1);
     Answers[] elso_valaszok = controller.FindVálaszokByQuestion(1);
@@ -29,7 +32,7 @@
 *@
 
 @*
-    <script type="text/javascript">
+
         function válasz(sorszam) {
             // Hívjuk meg a szerver oldali kódot AJAX hívással, hogy frissítsük az adatokat
             $.ajax({
@@ -53,19 +56,28 @@
 *@
 
 <script type="text/javascript">
+
     function válasz(sorszam) {
         $.ajax({
             type: "POST",
-            url: "KérdésController/FindKérdésByID", // Az AJAX hívás célja
+            url: '../KérdésekController/FindKérdésByID', // Az AJAX hívás célja
             data: { sorszam: sorszam }, // A szerveroldali kódnak átadott adat
             success: function (response) {
                 // Sikeres AJAX hívás esetén frissítjük az adatokat a válasz alapján
                 document.getElementById("question").innerHTML = response.QuestionText;
+                }
+        });
+    }
 
-            }
+    function proba() {
+        $.ajax({
+            url: "/DesktopModules/HelloWorld/module-helloworld/Dnn.HelloWorld/Services/Implementations/KérdésekController/FindKérdésByIDJson",
+        }).done(function () {
+            alert('Added');
         });
     }
 </script>
+
 
 @*               document.getElementById("answear1").innerHTML = response.answers[0];
     document.getElementById("answear2").innerHTML = response.answers[1];
@@ -82,6 +94,30 @@
     </script>*@
 
 
+
+
+@*ha nem műküdik semmi, akkor mindegyikre kell csinálni az eleján egy változót és azt meghívni ami a sorszám
+    also, lehet az onlick eseményt is változtatni kéne a JS-ben hogy a sorszam változzon*@
+
+
+
+@*
+    <script type="text/javascript">
+
+        function válasz(sorszam) {
+            var questionText = '@Html.Raw(Json.Encode(controller.FindKérdésByID(sorszam).QuestionText))';
+            var answers = ['@Html.Raw(Json.Encode(controller.FindVálaszokByQuestion(sorszam)[0].AnswerText))',
+                        '@Html.Raw(Json.Encode(controller.FindVálaszokByQuestion(sorszam)[1].AnswerText))',
+                        '@Html.Raw(Json.Encode(controller.FindVálaszokByQuestion(sorszam)[2].AnswerText))'];
+            document.getElementById("question").innerHTML = questionText;
+            document.getElementById("answer1").innerHTML = answers[0];
+            document.getElementById("answer2").innerHTML = answers[1];
+            document.getElementById("answer3").innerHTML = answers[2];
+        }
+    </script>
+*@
+
+
 <div>
 
     <div class="first-section">
@@ -94,6 +130,8 @@
         <button type="radio" onclick="válasz(3)" id="answear3">@(elso_valaszok != null ? elso_valaszok[2].AnswerText : "Answer not found.")</button>
 
     </div>
+
+    <button onclick="proba()">HelloWorld</button>
 </div>
 
 

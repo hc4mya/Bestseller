@@ -10,6 +10,7 @@ namespace HelloWorld.Dnn.Dnn.HelloWorld.Services
     internal interface KérdésekManager
     {
         Kérdések FindKérdésByID(int questionid);
+        Kérdések FindKérdésByIDJson(int questionid);
 
         Answers[] FindVálaszokByQuestion(int questionid);
     }
