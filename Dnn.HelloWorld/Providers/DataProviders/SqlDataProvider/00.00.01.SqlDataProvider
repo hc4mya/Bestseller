@@ -70,7 +70,46 @@ GO
 
  INSERT INTO Kérdések (QuestionText)
 VALUES ('Mi a célod a növényekkel, kertészettel?'),
-      ('Milyen típusú dekorációt szeretnél a lakásodban?');
+      ('Inkább színes legyen, vagy zöld?'),
+      ('Inkább színes legyen, vagy zöld?'),
+      ('Milyen hosszú időre tervezel?'),
+      ('Kérdés-3-1'),
+      ('Kérdés-3-2'),
+      ('Kérdés-3-3'),
+      ('Kérdés-3-4'),
+      ('Kérdés-3-5'),
+      ('Kérdés-3-6'),
+      ('Kérdés-3-7'),
+      ('Kérdés-3-8'),
+      ('Kérdés-3-9'),
+      ('Kérdés-4-1'),
+      ('Kérdés-4-2'),
+      ('Kérdés-4-3'),
+      ('Kérdés-4-4'),
+      ('Kérdés-4-5'),
+      ('Kérdés-4-6'),
+      ('Kérdés-4-7'),
+      ('Kérdés-4-8'),
+      ('Kérdés-4-9'),
+      ('Kérdés-4-10'),
+      ('Kérdés-4-11'),
+      ('Kérdés-4-12'),
+      ('Kérdés-4-13'),
+      ('Kérdés-4-14'),
+      ('Kérdés-4-15'),
+      ('Kérdés-4-16'),
+      ('Kérdés-4-17'),
+      ('Kérdés-4-18'),
+      ('Kérdés-4-19'),
+      ('Kérdés-4-20'),
+      ('Kérdés-4-21'),
+      ('Kérdés-4-22'),
+      ('Kérdés-4-23'),
+      ('Kérdés-4-24'),
+      ('Kérdés-4-25'),
+      ('Kérdés-4-26'),
+      ('Kérdés-4-27')
+      ;
 GO
 
 
