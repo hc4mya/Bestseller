@@ -17,49 +17,10 @@
     @*ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/HelloWorld/module-helloworld/Dnn.HelloWorld/Scripts/BSScript.js");  *@
 
 
-    var controller = new HelloWorld.Dnn.Dnn.HelloWorld.Services.Implementations.KérdésekController();
-    var elso_kérdés = controller.FindKérdésByID(1);
-    Answers[] elso_valaszok = controller.FindVálaszokByQuestion(1);
+var controller = new HelloWorld.Dnn.Dnn.HelloWorld.Services.Implementations.KerdesekController();
+var elso_kérdés = controller.FindKerdesByID(1);
+Answers[] elso_valaszok = controller.FindValaszokByQuestion(1);
 
-    var kérdés_2_1 = controller.FindKérdésByID(2);
-    var kérdés_2_2 = controller.FindKérdésByID(3);
-    var kérdés_2_3 = controller.FindKérdésByID(4);
-    var kérdés_4_1 = controller.FindKérdésByID(5);
-    var kérdés_4_2 = controller.FindKérdésByID(6);
-    var kérdés_4_3 = controller.FindKérdésByID(7);
-    var kérdés_4_4 = controller.FindKérdésByID(8);
-    var kérdés_4_5 = controller.FindKérdésByID(9);
-    var kérdés_4_6 = controller.FindKérdésByID(10);
-    var kérdés_4_7 = controller.FindKérdésByID(11);
-    var kérdés_4_8 = controller.FindKérdésByID(12);
-    var kérdés_4_9 = controller.FindKérdésByID(13);
-    var kérdés_5_1 = controller.FindKérdésByID(14);
-    var kérdés_5_2 = controller.FindKérdésByID(15);
-    var kérdés_5_3 = controller.FindKérdésByID(16);
-    var kérdés_5_4 = controller.FindKérdésByID(17);
-    var kérdés_5_5 = controller.FindKérdésByID(18);
-    var kérdés_5_6 = controller.FindKérdésByID(19);
-    var kérdés_5_7 = controller.FindKérdésByID(20);
-    var kérdés_5_8 = controller.FindKérdésByID(21);
-    var kérdés_5_9 = controller.FindKérdésByID(22);
-    var kérdés_5_10 = controller.FindKérdésByID(23);
-    var kérdés_5_11 = controller.FindKérdésByID(24);
-    var kérdés_5_12 = controller.FindKérdésByID(25);
-    var kérdés_5_13 = controller.FindKérdésByID(26);
-    var kérdés_5_14 = controller.FindKérdésByID(27);
-    var kérdés_5_15 = controller.FindKérdésByID(28);
-    var kérdés_5_16 = controller.FindKérdésByID(29);
-    var kérdés_5_17 = controller.FindKérdésByID(30);
-    var kérdés_5_18 = controller.FindKérdésByID(31);
-    var kérdés_5_19 = controller.FindKérdésByID(32);
-    var kérdés_5_20 = controller.FindKérdésByID(33);
-    var kérdés_5_21 = controller.FindKérdésByID(34);
-    var kérdés_5_22 = controller.FindKérdésByID(35);
-    var kérdés_5_23 = controller.FindKérdésByID(36);
-    var kérdés_5_24 = controller.FindKérdésByID(37);
-    var kérdés_5_25 = controller.FindKérdésByID(38);
-    var kérdés_5_26 = controller.FindKérdésByID(39);
-    var kérdés_5_27 = controller.FindKérdésByID(40);
 
 }
 
@@ -112,34 +73,38 @@
         }
     </script>*@
 
+@*
+    '/DesktopModules/MVC/HelloWorld/module-helloworld/Dnn.HelloWorld/Services/Implementations/KérdésekController/FindKérdésByID'
+*@
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    function válasz(sorszam) {
-                var moduleId = $('#send-message-form').data('moduleid');
-                // Perform the AJAX request
-                        $.ajax({
-                            type: 'POST',
-                            url: '/DesktopModules/MVC/HelloWorld/module-helloworld/Dnn.HelloWorld/Services/Implementations/KérdésekController/FindKérdésByID', // Adjust the URL to match your routing
-                            headers: {
-                                "ModuleId": moduleId,
-                                "TabId": @Dnn.ModuleContext.TabId,
-                                "RequestVerificationToken": '@Html.AntiForgeryToken()'
-                            },
-                            data: { sorszam: sorszam },
-                            beforeSend: function () {
-                                // Optional: Display a loading message
-                                
-                            },
-                            success: function (response) {
-                                // Handle the response from your controller
-                                document.getElementById("question").innerHTML = response.QuestionText;
-                            },
-                            error: function (xhr, status, error) {
-                                // Handle any AJAX errors
-                               console.log("Hiba")
-                            },
-                        });
-    };
+        function válasz(sorszam) {
+                    var moduleId = $('#send-message-form').data('moduleid');
+                    // Perform the AJAX request
+                            $.ajax({
+                                type: 'POST',
+                                url: "/KerdesekController/FindKerdesByIDJson", // Adjust the URL to match your routing
+                                headers: {
+                                    "ModuleId": moduleId,
+                                    "TabId": @Dnn.ModuleContext.TabId,
+                                    "RequestVerificationToken": '@Html.AntiForgeryToken()'
+                                },
+                                data: { sorszam: sorszam },
+                                beforeSend: function () {
+                                    // Optional: Display a loading message
+
+                                },
+                                success: function (response) {
+                                    // Handle the response from your controller
+                                    document.getElementById("question").innerHTML = response.QuestionText;
+                                },
+                                error: function (xhr, status, error) {
+                                    // Handle any AJAX errors
+                                   console.log("Hiba")
+                                },
+                            });
+        };
 </script>
 
 @*               document.getElementById("answear1").innerHTML = response.answers[0];

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace HelloWorld.Dnn.Dnn.HelloWorld.Services
 {
-    internal interface KérdésekManager
+    internal interface KerdesekManager
     {
-        Kérdések FindKérdésByID(int questionid);
+        Kérdések FindKerdesByID(int questionid);
         Kérdések FindKérdésByIDJson(int questionid);
 
-        Answers[] FindVálaszokByQuestion(int questionid);
+        Answers[] FindValaszokByQuestion(int questionid);
     }
 }
