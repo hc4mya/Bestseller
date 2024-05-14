@@ -16,13 +16,103 @@
 @{
     @*ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/HelloWorld/module-helloworld/Dnn.HelloWorld/Scripts/BSScript.js");  *@
 
-
-var controller = new HelloWorld.Dnn.Dnn.HelloWorld.Services.Implementations.KerdesekController();
-var elso_kérdés = controller.FindKerdesByID(1);
-Answers[] elso_valaszok = controller.FindValaszokByQuestion(1);
+    var szamlalo = 0;
+    var controller = new HelloWorld.Dnn.Dnn.HelloWorld.Services.Implementations.KerdesekController();
+    var elso_kérdés = controller.FindKerdesByID(1);
+    Answers[] elso_valaszok = controller.FindValaszokByQuestion(1);
+    var masodik_kérdés = controller.FindKerdesByID(2);
+    Answers[] masodik_valaszok = controller.FindValaszokByQuestion(2);
+    var harmadik_kérdés = controller.FindKerdesByID(3);
+    Answers[] harmadik_valaszok = controller.FindValaszokByQuestion(3);
+    var negyedik_kérdés = controller.FindKerdesByID(4);
+    Answers[] negyedik_valaszok = controller.FindValaszokByQuestion(4);
 
 
 }
+
+
+<input type="hidden" id="PassingToJavaScript_K_2" value="@(masodik_kérdés.QuestionText)">
+<input type="hidden" id="PassingToJavaScript_V_2_1" value="@(masodik_valaszok[0].AnswerText)">
+<input type="hidden" id="PassingToJavaScript_V_2_2" value="@(masodik_valaszok[1].AnswerText)">
+<input type="hidden" id="PassingToJavaScript_V_2_3" value="@(masodik_valaszok[2].AnswerText)">
+
+<input type="hidden" id="PassingToJavaScript_K_3" value="@(harmadik_kérdés.QuestionText)">
+<input type="hidden" id="PassingToJavaScript_V_3_1" value="@(harmadik_valaszok[0].AnswerText)">
+<input type="hidden" id="PassingToJavaScript_V_3_2" value="@(harmadik_valaszok[1].AnswerText)">
+<input type="hidden" id="PassingToJavaScript_V_3_3" value="@(harmadik_valaszok[2].AnswerText)">
+
+<input type="hidden" id="PassingToJavaScript_K_4" value="@(negyedik_kérdés.QuestionText)">
+<input type="hidden" id="PassingToJavaScript_V_4_1" value="@(negyedik_valaszok[0].AnswerText)">
+<input type="hidden" id="PassingToJavaScript_V_4_2" value="@(negyedik_valaszok[1].AnswerText)">
+<input type="hidden" id="PassingToJavaScript_V_4_3" value="@(negyedik_valaszok[2].AnswerText)">
+
+
+<div id="quiz-@Dnn.ModuleContext.ModuleId">
+
+    <div class="first-section">
+        <p id="question">
+            @(elso_kérdés.QuestionText)
+        </p>
+        @*itt a válasz(@(controller.FindNextQuestionID()))*@
+        <button type="radio" onclick="valasz()" id="answer1">@(elso_valaszok[0].AnswerText)</button>
+        <button type="radio" onclick="valasz()" id="answer2">@(elso_valaszok[1].AnswerText)</button>
+        <button type="radio" onclick="valasz()" id="answer3">@(elso_valaszok[2].AnswerText)</button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+        var szamlalo =0
+        var masodik_kérdés=document.getElementById("PassingToJavaScript_K_2").value ;
+        var masodik_valaszok_1 =document.getElementById("PassingToJavaScript_V_2_1").value ;
+        var masodik_valaszok_2 =document.getElementById("PassingToJavaScript_V_2_2").value ;
+        var masodik_valaszok_3 =document.getElementById("PassingToJavaScript_V_2_3").value ;
+
+        var harmadik_kérdés=document.getElementById("PassingToJavaScript_K_3").value ;
+        var harmadik_valaszok_1 =document.getElementById("PassingToJavaScript_V_3_1").value ;
+        var harmadik_valaszok_2 =document.getElementById("PassingToJavaScript_V_3_2").value ;
+        var harmadik_valaszok_3 =document.getElementById("PassingToJavaScript_V_3_3").value ;
+
+        var negyedik_kérdés=document.getElementById("PassingToJavaScript_K_4").value ;
+        var negyedik_valaszok_1 =document.getElementById("PassingToJavaScript_V_4_1").value ;
+        var negyedik_valaszok_2 =document.getElementById("PassingToJavaScript_V_4_2").value ;
+        var negyedik_valaszok_3 =document.getElementById("PassingToJavaScript_V_4_3").value ;
+
+
+
+
+        function valasz() {
+                    event.preventDefault()
+
+                    if (szamlalo==0){
+                        document.getElementById("question").innerHTML = masodik_kérdés ;
+                        document.getElementById("answer1").innerHTML =masodik_valaszok_1 ;
+                        document.getElementById("answer2").innerHTML =masodik_valaszok_2 ;
+                        document.getElementById("answer3").innerHTML =masodik_valaszok_3  ;
+                    }else if (szamlalo==1) {
+                        document.getElementById("question").innerHTML =@harmadik_kérdés.QuestionText;
+                        document.getElementById("answer1").innerHTML =@harmadik_valaszok[0].AnswerText ;
+                        document.getElementById("answer2").innerHTML =@harmadik_valaszok[1].AnswerText ;
+                        document.getElementById("answer3").innerHTML =@harmadik_valaszok[2].AnswerText ;
+                    } else if (szamlalo==2) {
+                        document.getElementById("question").innerHTML =@negyedik_kérdés.QuestionText;
+                        document.getElementById("answer1").innerHTML =@negyedik_valaszok[0].AnswerText ;
+                        document.getElementById("answer2").innerHTML =@negyedik_valaszok[1].AnswerText ;
+                        document.getElementById("answer3").innerHTML =@negyedik_valaszok[2].AnswerText ;
+                    } else  {
+                        // ajánlott termékek behozása
+                    }
+
+
+        };
+
+
+
+</script>
+
 
 @*
     <script type="text/javascript">
@@ -77,35 +167,8 @@ Answers[] elso_valaszok = controller.FindValaszokByQuestion(1);
     '/DesktopModules/MVC/HelloWorld/module-helloworld/Dnn.HelloWorld/Services/Implementations/KérdésekController/FindKérdésByID'
 *@
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-        function válasz(sorszam) {
-                    var moduleId = $('#send-message-form').data('moduleid');
-                    // Perform the AJAX request
-                            $.ajax({
-                                type: 'POST',
-                                url: "/KerdesekController/FindKerdesByIDJson", // Adjust the URL to match your routing
-                                headers: {
-                                    "ModuleId": moduleId,
-                                    "TabId": @Dnn.ModuleContext.TabId,
-                                    "RequestVerificationToken": '@Html.AntiForgeryToken()'
-                                },
-                                data: { sorszam: sorszam },
-                                beforeSend: function () {
-                                    // Optional: Display a loading message
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
 
-                                },
-                                success: function (response) {
-                                    // Handle the response from your controller
-                                    document.getElementById("question").innerHTML = response.QuestionText;
-                                },
-                                error: function (xhr, status, error) {
-                                    // Handle any AJAX errors
-                                   console.log("Hiba")
-                                },
-                            });
-        };
-</script>
 
 @*               document.getElementById("answear1").innerHTML = response.answers[0];
     document.getElementById("answear2").innerHTML = response.answers[1];
@@ -146,20 +209,6 @@ Answers[] elso_valaszok = controller.FindValaszokByQuestion(1);
 *@
 
 
-<div id="quiz-@Dnn.ModuleContext.ModuleId">
-
-    <div class="first-section">
-        <p id="question">
-            @(elso_kérdés != null ? elso_kérdés.QuestionText : "Question not found.")
-        </p>
-        @*itt a válasz(@(controller.FindNextQuestionID()))*@
-        <button type="radio" onclick="válasz(1)" id="answear1">@(elso_valaszok != null ? elso_valaszok[0].AnswerText : "Answer not found.")</button>
-        <button type="radio" onclick="válasz(2)" id="answear2">@(elso_valaszok != null ? elso_valaszok[1].AnswerText : "Answer not found.")</button>
-        <button type="radio" onclick="válasz(3)" id="answear3">@(elso_valaszok != null ? elso_valaszok[2].AnswerText : "Answer not found.")</button>
-
-    </div>
-
-</div>
 
 
 

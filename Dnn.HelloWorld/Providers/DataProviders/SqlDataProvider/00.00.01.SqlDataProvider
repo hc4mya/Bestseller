@@ -71,44 +71,8 @@ GO
  INSERT INTO Kérdések (QuestionText)
 VALUES ('Mi a célod a növényekkel, kertészettel?'),
       ('Inkább színes legyen, vagy zöld?'),
-      ('Inkább színes legyen, vagy zöld?'),
       ('Milyen hosszú időre tervezel?'),
-      ('Kérdés-3-1'),
-      ('Kérdés-3-2'),
-      ('Kérdés-3-3'),
-      ('Kérdés-3-4'),
-      ('Kérdés-3-5'),
-      ('Kérdés-3-6'),
-      ('Kérdés-3-7'),
-      ('Kérdés-3-8'),
-      ('Kérdés-3-9'),
-      ('Kérdés-4-1'),
-      ('Kérdés-4-2'),
-      ('Kérdés-4-3'),
-      ('Kérdés-4-4'),
-      ('Kérdés-4-5'),
-      ('Kérdés-4-6'),
-      ('Kérdés-4-7'),
-      ('Kérdés-4-8'),
-      ('Kérdés-4-9'),
-      ('Kérdés-4-10'),
-      ('Kérdés-4-11'),
-      ('Kérdés-4-12'),
-      ('Kérdés-4-13'),
-      ('Kérdés-4-14'),
-      ('Kérdés-4-15'),
-      ('Kérdés-4-16'),
-      ('Kérdés-4-17'),
-      ('Kérdés-4-18'),
-      ('Kérdés-4-19'),
-      ('Kérdés-4-20'),
-      ('Kérdés-4-21'),
-      ('Kérdés-4-22'),
-      ('Kérdés-4-23'),
-      ('Kérdés-4-24'),
-      ('Kérdés-4-25'),
-      ('Kérdés-4-26'),
-      ('Kérdés-4-27')
+      ('Kérdés--4')
       ;
 GO
 
@@ -117,9 +81,15 @@ INSERT INTO Válaszok (QuestionID, AnswerText, NextQuestionID)
 VALUES (1, 'Lakásom díszítése', 1),
       (1, 'Kertem díszítése', 1),
       (1, 'Termeszteni szeretnék valamit', 1),
-      (2, 'Lakásválasz1', 1),
-      (2, 'Lakásválasz2', 1),
-      (2, 'Lakásválasz3', 1);
+      (2, '2válasz1', 1),
+      (2, '2válasz2', 1),
+      (2, '2válasz3', 1),
+      (3, '3válasz1', 1),
+      (3, '3válasz2', 1),
+      (3, '3válasz3', 1),
+      (4, '4válasz1', 1),
+      (4, '4válasz2', 1),
+      (4, '4válasz3', 1);
 GO
 
 /************************************************************/
