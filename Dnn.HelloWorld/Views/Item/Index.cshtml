@@ -31,6 +31,9 @@
 }
 
 
+
+
+
 <input type="hidden" id="PassingToJavaScript_K_2" value="@(masodik_kérdés.QuestionText)">
 <input type="hidden" id="PassingToJavaScript_V_2_1" value="@(masodik_valaszok[0].AnswerText)">
 <input type="hidden" id="PassingToJavaScript_V_2_2" value="@(masodik_valaszok[1].AnswerText)">
@@ -47,25 +50,9 @@
 <input type="hidden" id="PassingToJavaScript_V_4_3" value="@(negyedik_valaszok[2].AnswerText)">
 
 
-<div id="quiz-@Dnn.ModuleContext.ModuleId">
+<script type="text/javascript">
 
-    <div class="first-section">
-        <p id="question">
-            @(elso_kérdés.QuestionText)
-        </p>
-        @*itt a válasz(@(controller.FindNextQuestionID()))*@
-        <button type="radio" onclick="valasz()" id="answer1">@(elso_valaszok[0].AnswerText)</button>
-        <button type="radio" onclick="valasz()" id="answer2">@(elso_valaszok[1].AnswerText)</button>
-        <button type="radio" onclick="valasz()" id="answer3">@(elso_valaszok[2].AnswerText)</button>
-
-    </div>
-
-</div>
-
-
-<script>
-
-        var szamlalo =0
+        var szamlalo = 0;
         var masodik_kérdés=document.getElementById("PassingToJavaScript_K_2").value ;
         var masodik_valaszok_1 =document.getElementById("PassingToJavaScript_V_2_1").value ;
         var masodik_valaszok_2 =document.getElementById("PassingToJavaScript_V_2_2").value ;
@@ -85,33 +72,54 @@
 
 
         function valasz() {
-                    event.preventDefault()
+                window.event.preventDefault();
 
                     if (szamlalo==0){
                         document.getElementById("question").innerHTML = masodik_kérdés ;
                         document.getElementById("answer1").innerHTML =masodik_valaszok_1 ;
                         document.getElementById("answer2").innerHTML =masodik_valaszok_2 ;
                         document.getElementById("answer3").innerHTML =masodik_valaszok_3  ;
-                    }else if (szamlalo==1) {
-                        document.getElementById("question").innerHTML =@harmadik_kérdés.QuestionText;
-                        document.getElementById("answer1").innerHTML =@harmadik_valaszok[0].AnswerText ;
-                        document.getElementById("answer2").innerHTML =@harmadik_valaszok[1].AnswerText ;
-                        document.getElementById("answer3").innerHTML =@harmadik_valaszok[2].AnswerText ;
+                    } else if (szamlalo == 1) {
+                        document.getElementById("question").innerHTML =harmadik_kérdés;
+                        document.getElementById("answer1").innerHTML = harmadik_valaszok_1;
+                        document.getElementById("answer2").innerHTML =harmadik_valaszok_2;
+                        document.getElementById("answer3").innerHTML =harmadik_valaszok_3;
                     } else if (szamlalo==2) {
-                        document.getElementById("question").innerHTML =@negyedik_kérdés.QuestionText;
-                        document.getElementById("answer1").innerHTML =@negyedik_valaszok[0].AnswerText ;
-                        document.getElementById("answer2").innerHTML =@negyedik_valaszok[1].AnswerText ;
-                        document.getElementById("answer3").innerHTML =@negyedik_valaszok[2].AnswerText ;
+                        document.getElementById("question").innerHTML =negyedik_kérdés;
+                        document.getElementById("answer1").innerHTML =negyedik_valaszok_1;
+                        document.getElementById("answer2").innerHTML =negyedik_valaszok_2;
+                        document.getElementById("answer3").innerHTML =negyedik_valaszok_3;
                     } else  {
-                        // ajánlott termékek behozása
-                    }
+                        ////ajánlott termékek behozása
+                        return;
+                             };
 
-
+                 szamlalo++;
         };
 
 
 
 </script>
+
+
+
+<div id="quiz-@Dnn.ModuleContext.ModuleId">
+
+    <div class="first-section">
+        <p id="question">
+            @(elso_kérdés.QuestionText)
+        </p>
+        
+        <button type="radio" onclick="valasz()" id="answer1">@(elso_valaszok[0].AnswerText)</button>
+        <button type="radio" onclick="valasz()" id="answer2">@(elso_valaszok[1].AnswerText)</button>
+        <button type="radio" onclick="valasz()" id="answer3">@(elso_valaszok[2].AnswerText)</button>
+
+    </div>
+
+</div>
+
+
+
 
 
 @*

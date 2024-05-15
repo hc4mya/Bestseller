@@ -1,10 +1,12 @@
-﻿IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Kérdések]') AND type in (N'U'))
-DROP TABLE {databaseOwner}[{objectQualifier}Kérdések]
-GO
-
+﻿
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Válaszok]') AND type in (N'U'))
 DROP TABLE {databaseOwner}[{objectQualifier}Válaszok]
 GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Kérdések]') AND type in (N'U'))
+DROP TABLE {databaseOwner}[{objectQualifier}Kérdések]
+GO
+
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}Products]') AND type in (N'U'))
 DROP TABLE {databaseOwner}[{objectQualifier}Products]
