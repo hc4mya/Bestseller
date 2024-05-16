@@ -22,6 +22,7 @@ namespace HelloWorld.Dnn.Dnn.HelloWorld.Services.Implementations
             }
         }
 
+        
         public Kérdések FindKérdésByIDJson(int questionid)
         {
             using (var ctx = DataContext.Instance())

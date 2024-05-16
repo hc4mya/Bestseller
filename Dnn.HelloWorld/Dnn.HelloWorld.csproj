@@ -135,6 +135,7 @@
     <Compile Include="Components\QuizManager.cs" />
     <Compile Include="Components\ItemManager.cs" />
     <Compile Include="Components\RouteConfig.cs" />
+    <Compile Include="Controllers\KerdesekController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Models\Answers.cs" />
@@ -143,7 +144,7 @@
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Implementations\KerdesekController.cs" />
+    <Compile Include="Services\Implementations\KérdésekController.cs" />
     <Compile Include="Services\KerdesekManager.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -14,10 +14,10 @@
 @using System.Data
 
 @{
-    @*ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/HelloWorld/module-helloworld/Dnn.HelloWorld/Scripts/BSScript.js");  *@
+    //ClientResourceManager.RegisterScript(Dnn.DnnPage, "~/DesktopModules/HelloWorld/module-helloworld/Dnn.HelloWorld/Scripts/BSScript.js");
 
     var szamlalo = 0;
-    var controller = new HelloWorld.Dnn.Dnn.HelloWorld.Services.Implementations.KerdesekController();
+    var controller = new HelloWorld.Dnn.Dnn.HelloWorld.Services.Implementations.KérdésekController();
     var elso_kérdés = controller.FindKerdesByID(1);
     Answers[] elso_valaszok = controller.FindValaszokByQuestion(1);
     var masodik_kérdés = controller.FindKerdesByID(2);
@@ -29,8 +29,6 @@
 
 
 }
-
-
 
 
 
@@ -51,69 +49,248 @@
 
 
 <script type="text/javascript">
+    var termekek =
+    {
+        "1111": ["Zöld páfrány", "zold-pafrany"],
+        "1112": ["Liliom mag","liliom-mag"],
+        "1113": ["Magnólia mag","magnolia-mag"],
+        "1121": ["Orchidea mag","orchidea-mag"],
+        "1122": ["Rebarbara mag","rebarbara-mag"],
+        "1123": ["Rózsaszín begónia","rozsaszin-begonia"],
+        "1131": ["Rózsa mag","rozsa-mag"],
+        "1132": ["Kék hortenzia","kek-hortenzia"],
+        "1133": ["Piros amarillisz","piros-amarillisz"],
+        "1211": ["Lila levendula","lila-levendula"],
+        "1212": ["Liliom mag","liliom-mag"],
+        "1213": ["Égszínkék Írisz","egszinkek-irisz"],
+        "1221": ["Bordó bazsarózsa","bordo-bazsarozsa"],
+        "1222": ["Azálea mag","azalea-mag"],
+        "1223": ["Illatos növénymag csomag","illatos-novenymag-csomag"],
+        "1231": ["Kamélia mag","kamélia-mag"],
+        "1232": ["Magnólia mag","magnolia-mag"],
+        "1233": ["Fehér orchidea","feher-orchidea"],
+        "1311": ["Orchidea mag","orchidea-mag"],
+        "1312": ["Azálea bonsai","azalea-bonsai"],
+        "1313": ["Fekete boróka bonsai","fekete-boroka-bonsai"],
+        "1321": ["Páfrányfenyő bonsai","pafranyfenyo-bonsai"],
+        "1322": ["Ciprus bonsai","ciprus-bonsai"],
+        "1323": ["Fekete fűz bonsai","fekete-fuz-bonsai"],
+        "1331": ["Napraforgó mag","napraforgo-mag"],
+        "1332": ["Japán juhar bonsai","japan-juhar-bonsai"],
+        "1333": ["Füge bonsai","fuge-bonsai"],
+        "2111": ["Zöld páfrány","zold-pafrany"],
+        "2112": ["Lila levendula","lila-levendula"],
+        "2113": ["Magnólia mag","magnolia-mag"],
+        "2121": ["Liliom mag","liliom-mag"],
+        "2122": ["Levendula mag","levendula-mag"],
+        "2123": ["Kerti virág vetőmag","kerti-virag-vetomag"],
+        "2131": ["Kék hortenzia","kek-hortenzia"],
+        "2132": ["Ibolya mag","ibolya-mag"],
+        "2133": ["Rózsa mag","rozsa-mag"],
+        "2211": ["Tulipán mag","tulipan-mag"],
+        "2212": ["Piros amarillisz","piros-amarillisz"],
+        "2213": ["Narancssárga kardvirág","narancssárga-kardvirag"],
+        "2221": ["Rebarbara mag","rebarbara-mag"],
+        "2222": ['Zöld páfrány', 'zold-pafrany'],
+        "2223": ['Citromfa', 'citromfa'],
+        "2231": ['Fehér orchidea', 'feher-orchidea'],
+        "2232": ['Tulipán mag', 'tulipan-mag'],
+        "2233": ['Piros amarillisz', 'piros-amarillisz'],
+        "2311": ['Levendula mag', 'levendula-mag'],
+        "2312": ['Kék hortenzia', 'kek-hortezia'],
+        "2313": ['Ibolya mag', 'ibolya-mag'],
+        "2321": ['Azálea mag', 'azalea-mag'],
+        "2322": ['Bordó bazsarózsa', 'bordo-babarozsa'],
+        "2323": ['Magnólia mag', 'magnolia'],
+        "2331": ['Lila levendula', 'lila-levendula'],
+        "2332": ['Kék hortenzia', 'kek-hortenzia'],
+        "2333": ['Kamélia mag', 'kamelia-mag'],
+        "3111": ['Uborka mag', 'uborka-mag'],
+        "3112": ['Szilvafa', 'szilvafa'],
+        "3113": ['Mogyorófa', 'mogyorofa'],
+        "3121": ['Mandulafa', 'mandulafa'],
+        "3122": ['Körtefa', 'kortefa'],
+        "3123": ['Diófa', 'diofa'],
+        "3131": ['Cékla mag', 'cekla-mag'],
+        "3132": ['Rebarbara mag', 'rebarbara-mag'],
+        "3133": ['Tök mag', 'tok-mag'],
+        "3211": ['Spenót mag', 'spenot-mag'],
+        "3212": ['Répa mag', 'repa-mag'],
+        "3213": ['Paprika mag', 'paprika-mag'],
+        "3221": ['Őszibarackfa', 'oszibarackfa'],
+        "3222": ['Mandulafa', 'mandulafa'],
+        "3223": ['Napraforgó mag', 'napraforgo-mag'],
+        "3231": ['Narancsfa', 'narancsfa'],
+        "3232": ['Paradicsom mag', 'paradicsom-mag'],
+        "3233": ['Paprika mag', 'paprika-mag'],
+        "3311": ['Répa mag', 'repa-mag'],
+        "3312": ['Mogyorófa', 'mogyorofa'],
+        "3313": ['Őszibarackfa', 'oszibarackfa'],
+        "3321": ['Körtefa', 'kortefa'],
+        "3322": ['Cukkini mag', 'cukkini-mag'],
+        "3323": ['Diófa', 'diofa'],
+        "3331": ['Cékla mag', 'cekla-mag'],
+        "3332": ['Cseresznyefa', 'cseresznyefa'],
+        "3333": ['Citromfa', 'citromfa']
+    };
 
-        var szamlalo = 0;
-        var masodik_kérdés=document.getElementById("PassingToJavaScript_K_2").value ;
-        var masodik_valaszok_1 =document.getElementById("PassingToJavaScript_V_2_1").value ;
-        var masodik_valaszok_2 =document.getElementById("PassingToJavaScript_V_2_2").value ;
-        var masodik_valaszok_3 =document.getElementById("PassingToJavaScript_V_2_3").value ;
+    
 
-        var harmadik_kérdés=document.getElementById("PassingToJavaScript_K_3").value ;
-        var harmadik_valaszok_1 =document.getElementById("PassingToJavaScript_V_3_1").value ;
-        var harmadik_valaszok_2 =document.getElementById("PassingToJavaScript_V_3_2").value ;
-        var harmadik_valaszok_3 =document.getElementById("PassingToJavaScript_V_3_3").value ;
+    var kerdes = document.getElementById("question");
+    var valasz1 = document.getElementById("answer1");
+    var valasz2 = document.getElementById("answer2");
+    var valasz3 = document.getElementById("answer3");
 
-        var negyedik_kérdés=document.getElementById("PassingToJavaScript_K_4").value ;
-        var negyedik_valaszok_1 =document.getElementById("PassingToJavaScript_V_4_1").value ;
-        var negyedik_valaszok_2 =document.getElementById("PassingToJavaScript_V_4_2").value ;
-        var negyedik_valaszok_3 =document.getElementById("PassingToJavaScript_V_4_3").value ;
+    var szamlalo = 0;
+    var masodik_kérdés = document.getElementById("PassingToJavaScript_K_2").value;
+    var masodik_valaszok_1 = document.getElementById("PassingToJavaScript_V_2_1").value;
+    var masodik_valaszok_2 = document.getElementById("PassingToJavaScript_V_2_2").value;
+    var masodik_valaszok_3 = document.getElementById("PassingToJavaScript_V_2_3").value;
+
+    var harmadik_kérdés = document.getElementById("PassingToJavaScript_K_3").value;
+    var harmadik_valaszok_1 = document.getElementById("PassingToJavaScript_V_3_1").value;
+    var harmadik_valaszok_2 = document.getElementById("PassingToJavaScript_V_3_2").value;
+    var harmadik_valaszok_3 = document.getElementById("PassingToJavaScript_V_3_3").value;
+
+    var negyedik_kérdés = document.getElementById("PassingToJavaScript_K_4").value;
+    var negyedik_valaszok_1 = document.getElementById("PassingToJavaScript_V_4_1").value;
+    var negyedik_valaszok_2 = document.getElementById("PassingToJavaScript_V_4_2").value;
+    var negyedik_valaszok_3 = document.getElementById("PassingToJavaScript_V_4_3").value;
+
+    var valaszok = []
 
 
+    function valasz(sorszam) {
+
+        var kerdes = document.getElementById("question");
+        var valasz1 = document.getElementById("answer1");
+        var valasz2 = document.getElementById("answer2");
+        var valasz3 = document.getElementById("answer3");
+
+        window.event.preventDefault();
+        valaszok.push(sorszam);
 
 
-        function valasz() {
-                window.event.preventDefault();
+        if (szamlalo == 0) {
+            document.getElementById("question").innerHTML = masodik_kérdés;
+            document.getElementById("answer1").innerHTML = masodik_valaszok_1;
+            document.getElementById("answer2").innerHTML = masodik_valaszok_2;
+            document.getElementById("answer3").innerHTML = masodik_valaszok_3;
+        } else if (szamlalo == 1) {
+            document.getElementById("question").innerHTML = harmadik_kérdés;
+            document.getElementById("answer1").innerHTML = harmadik_valaszok_1;
+            document.getElementById("answer2").innerHTML = harmadik_valaszok_2;
+            document.getElementById("answer3").innerHTML = harmadik_valaszok_3;
+        } else if (szamlalo == 2) {
+            document.getElementById("question").innerHTML = negyedik_kérdés;
+            document.getElementById("answer1").innerHTML = negyedik_valaszok_1;
+            document.getElementById("answer2").innerHTML = negyedik_valaszok_2;
+            document.getElementById("answer3").innerHTML = negyedik_valaszok_3;
+        } else {
+            kerdes.style.display = "none";
+            valasz1.style.display = "none";
+            valasz2.style.display = "none";
+            valasz3.style.display = "none";
 
-                    if (szamlalo==0){
-                        document.getElementById("question").innerHTML = masodik_kérdés ;
-                        document.getElementById("answer1").innerHTML =masodik_valaszok_1 ;
-                        document.getElementById("answer2").innerHTML =masodik_valaszok_2 ;
-                        document.getElementById("answer3").innerHTML =masodik_valaszok_3  ;
-                    } else if (szamlalo == 1) {
-                        document.getElementById("question").innerHTML =harmadik_kérdés;
-                        document.getElementById("answer1").innerHTML = harmadik_valaszok_1;
-                        document.getElementById("answer2").innerHTML =harmadik_valaszok_2;
-                        document.getElementById("answer3").innerHTML =harmadik_valaszok_3;
-                    } else if (szamlalo==2) {
-                        document.getElementById("question").innerHTML =negyedik_kérdés;
-                        document.getElementById("answer1").innerHTML =negyedik_valaszok_1;
-                        document.getElementById("answer2").innerHTML =negyedik_valaszok_2;
-                        document.getElementById("answer3").innerHTML =negyedik_valaszok_3;
-                    } else  {
-                        ////ajánlott termékek behozása
-                        return;
-                             };
+            ////ajánlott termékek behozása, itt kell majd egy feltétel rendszer, hogy a válaszok alapján mit ajánlunk
 
-                 szamlalo++;
+            var valasz_str = valaszok[0].toString() + valaszok[1].toString() + valaszok[2].toString() + valaszok[3].toString() 
+            
+            const termek1 = document.createElement("a");
+            const node1 = document.createTextNode(termekek[valasz_str][0]);
+            termek1.appendChild(node1);
+            termek1.title = termekek[valasz_str][0];
+            termek1.href = "http://20.234.113.211:8086/Termekadatok/" + termekek[valasz_str][1];
+            termek1.id = "termek1";
+            const element1 = document.getElementById("first-section");
+            const before = document.getElementById("question");
+            element1.insertBefore(termek1, before);
+            
         };
 
+        szamlalo++;
+
+    };
+
+    function reset() {
+        // Re-select DOM elements to ensure they are available in this scope
+        var kerdes = document.getElementById("question");
+        var valasz1 = document.getElementById("answer1");
+        var valasz2 = document.getElementById("answer2");
+        var valasz3 = document.getElementById("answer3");
+        var termek1 = document.getElementById("termek1");
+
+        // Check if the elements exist before trying to modify their style or remove them
+        if (kerdes) {
+            kerdes.style.display = "block";
+        }
+        if (valasz1) {
+            valasz1.style.display = "block";
+        }
+        if (valasz2) {
+            valasz2.style.display = "block";
+        }
+        if (valasz3) {
+            valasz3.style.display = "block";
+        }
+        if (termek1) {
+            termek1.remove();
+        }
+
+        // Reset the counter and the answers array
+        
+        szamlalo = 0;
+        valaszok = [];
+    }
+
+    //function reset() {
+    //    var termek1 = document.getElementById("termek1")
+
+    //    kerdes.style.display = "block";
+    //    valasz1.style.display = "block";
+    //    valasz2.style.display = "block";
+    //    valasz3.style.display = "block";
+    //    termek1.remove();
+    //    szamlalo = 0;
+    //    valaszok = [];
+    //}
 
 
+    //function válasz(sorszam) {
+    //    window.event.preventDefault();
+    //    $.ajax({
+    //        type: "POST",
+    //        url: 'KerdesekController/FindKerdesByIDJson', // Ensure this URL is correct
+    //        data: { sorszam: sorszam },
+    //        success: function (response) {
+    //            // Update the question and answers based on the response
+    //            document.getElementById("question").innerHTML = response.QuestionText;
+                
+    //        },
+    //        error: function (error) {
+    //            console.error("Error fetching data: ", error);
+    //        }
+    //    });
+    //}
+    
 </script>
 
 
 
 <div id="quiz-@Dnn.ModuleContext.ModuleId">
 
-    <div class="first-section">
+    <div id="first-section">
         <p id="question">
             @(elso_kérdés.QuestionText)
         </p>
-        
-        <button type="radio" onclick="valasz()" id="answer1">@(elso_valaszok[0].AnswerText)</button>
-        <button type="radio" onclick="valasz()" id="answer2">@(elso_valaszok[1].AnswerText)</button>
-        <button type="radio" onclick="valasz()" id="answer3">@(elso_valaszok[2].AnswerText)</button>
 
+        <button type="radio" onclick="valasz(1)" id="answer1">@(elso_valaszok[0].AnswerText)</button>
+        <button type="radio" onclick="valasz(2)" id="answer2">@(elso_valaszok[1].AnswerText)</button>
+        <button type="radio" onclick="valasz(3)" id="answer3">@(elso_valaszok[2].AnswerText)</button>
+
+    </div>
+    <div id="reset">
+        <button type="radio" onclick="reset()" id="resetb">Kezdd elölről!</button>
     </div>
 
 </div>
@@ -131,29 +308,11 @@
     </script>
 *@
 
-@*
 
-        function válasz(sorszam) {
-            // Hívjuk meg a szerver oldali kódot AJAX hívással, hogy frissítsük az adatokat
-            $.ajax({
-                type: "POST",
-                url: "KérdésController/FindKérdésByID",
-                data: { sorszam: sorszam }, // Átadjuk a kiválasztott sorszam paramétert a controllernek
-                success: function (response) {
-                    // Sikeres AJAX hívás esetén frissítjük az adatokat a válasz alapján
-                    var elso_kérdés = response.elso_kérdés;
-                    var elso_valaszok = response.elso_valaszok;
 
-                    // Itt már használhatjuk az elso_kérdés és elso_valaszok változókat a JavaScriptben
-                    // Például, frissíthetjük a gomb szövegét az új adatok alapján
-                    $("#button1").text(elso_valaszok[0].AnswerText);
-                    $("#button2").text(elso_valaszok[1].AnswerText);
-                    $("#button3").text(elso_valaszok[2].AnswerText);
-                }
-            });
-        }
-    </script>
-*@
+
+
+
 @*
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
