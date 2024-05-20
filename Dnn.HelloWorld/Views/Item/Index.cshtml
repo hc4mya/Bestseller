@@ -56,7 +56,7 @@
         "1113": ["Magnólia mag","magnolia-mag"],
         "1121": ["Orchidea mag","orchidea-mag"],
         "1122": ["Rebarbara mag","rebarbara-mag"],
-        "1123": ["Rózsaszín begónia","rozsaszin-begonia"],
+        "1123": ["Rózsaszín begónia", "rozsaszc3adn-begonia"],
         "1131": ["Rózsa mag","rozsa-mag"],
         "1132": ["Kék hortenzia","kek-hortenzia"],
         "1133": ["Piros amarillisz","piros-amarillisz"],
@@ -66,7 +66,7 @@
         "1221": ["Bordó bazsarózsa","bordo-bazsarozsa"],
         "1222": ["Azálea mag","azalea-mag"],
         "1223": ["Illatos növénymag csomag","illatos-novenymag-csomag"],
-        "1231": ["Kamélia mag","kamélia-mag"],
+        "1231": ["Kamélia mag","kamelia-mag"],
         "1232": ["Magnólia mag","magnolia-mag"],
         "1233": ["Fehér orchidea","feher-orchidea"],
         "1311": ["Orchidea mag","orchidea-mag"],
@@ -202,9 +202,12 @@
             termek1.title = termekek[valasz_str][0];
             termek1.href = "http://20.234.113.211:8086/Termekadatok/" + termekek[valasz_str][1];
             termek1.id = "termek1";
-            const element1 = document.getElementById("first-section");
-            const before = document.getElementById("question");
+            const element1 = document.getElementById("ajanlas");
+            const before = document.getElementById("before");
             element1.insertBefore(termek1, before);
+
+            const ajanlas = document.getElementById("ajanlas")
+            ajanlas.style.display="block"
             
         };
 
@@ -236,7 +239,9 @@
         if (termek1) {
             termek1.remove();
         }
-
+        if (ajanlas) {
+            ajanlas.style.display="none";
+        }
         // Reset the counter and the answers array
         
         szamlalo = 0;
@@ -279,19 +284,43 @@
 
 <div id="quiz-@Dnn.ModuleContext.ModuleId">
 
-    <div id="first-section">
-        <p id="question">
+    <div id="first-section" class="modul-body">
+
+        <div class="modul-bemutato">
+            <p>Nem tudod melyik növény való neked? Segítünk megtalálni!</p>
+            <ul>
+                <li>
+                    Válaszolj minden kérdésre!
+                </li>
+                <li>
+                    Látogasd meg az ajánlott termék oldalát!
+                </li>
+
+                <li>
+                    Vásárold meg a terméket a webshopunkban!
+                </li>
+            </ul>
+        </div>
+
+        <p id="question" class="modul-question">
             @(elso_kérdés.QuestionText)
         </p>
+        <div class="modul-answer-body">
+            <button class="modul-button" type="radio" onclick="valasz(1)" id="answer1">@(elso_valaszok[0].AnswerText)</button>
+            <button class="modul-button" type="radio" onclick="valasz(2)" id="answer2">@(elso_valaszok[1].AnswerText)</button>
+            <button class="modul-button" type="radio" onclick="valasz(3)" id="answer3">@(elso_valaszok[2].AnswerText)</button>
+        </div>
 
-        <button type="radio" onclick="valasz(1)" id="answer1">@(elso_valaszok[0].AnswerText)</button>
-        <button type="radio" onclick="valasz(2)" id="answer2">@(elso_valaszok[1].AnswerText)</button>
-        <button type="radio" onclick="valasz(3)" id="answer3">@(elso_valaszok[2].AnswerText)</button>
+        <div id="ajanlas" style="display:none;">
+            <p>Az általad megadott válaszok alapján, kiválasztottuk neked a számodra legjobb terméket:</p>
+            <p id="before">Bővebb információért kattints a linkre!</p>
+        </div>
 
+        <div id="reset">
+            <button type="radio" onclick="reset()" id="resetb">Kezdd elölről!</button>
+        </div>
     </div>
-    <div id="reset">
-        <button type="radio" onclick="reset()" id="resetb">Kezdd elölről!</button>
-    </div>
+
 
 </div>
 

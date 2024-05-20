@@ -68,25 +68,25 @@ GO
  INSERT INTO Kérdések (QuestionText)
 VALUES ('Mi a célod a növényekkel, kertészettel?'),
       ('Mennyire tartod magad rutinos kertésznek?'),
-      ('Mennyi napfényt kapna az ültetendő növény?'),
-      ('Mennyi időt tudsz hetente a növények gondozására szánni?')
+      ('Mennyi napfényt kapna a növény?'),
+      ('Mennyi energiát tudsz hetente a növények gondozására szánni?')
       ;
 GO
 
 
 INSERT INTO Válaszok (QuestionID, AnswerText, NextQuestionID)
-VALUES (1, 'Lakásom díszítése', 1),
-      (1, 'Kertem díszítése', 1),
-      (1, 'Termeszteni szeretnék valamit', 1),
-      (2, 'Most kezdenék bele', 1),
-      (2, 'Közepesen vagyok tapasztalt', 1),
-      (2, 'Profi vagyok', 1),
-      (3, 'Indirekt napfényt kap', 1),
-      (3, 'A nap bizonyos szakaszaiban', 1),
-      (3, 'Egész nap kapna fényt', 1),
-      (4, 'Sajnos kevés időm van', 1),
-      (4, 'Van némi időm hetente, de nem minden nap', 1),
-      (4, 'Rendszeresen van időm a növényeim gondozására', 1)
+VALUES (1, 'Lakásom díszítése.', 1),
+      (1, 'Kertem díszítése.', 1),
+      (1, 'Termeszteni szeretnék valamit.', 1),
+      (2, 'Most kezdenék bele.', 1),
+      (2, 'Közepesen vagyok tapasztalt.', 1),
+      (2, 'Profi vagyok.', 1),
+      (3, 'Indirekt napfényt kap.', 1),
+      (3, 'A nap bizonyos szakaszaiban.', 1),
+      (3, 'Egész nap kapna fényt.', 1),
+      (4, 'Sajnos kevés kapacitásom van.', 1),
+      (4, 'Van némi kapacitásom hetente, de nem minden nap.', 1),
+      (4, 'Rendszeresen van energiám a gondozására.', 1)
       ;
 GO
 
